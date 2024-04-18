@@ -39,3 +39,18 @@
 - docker exec -it DB-mysql mysql -uroot -p # enter into mysql in container
 
 - docker run --name DB-mysql2 -e MYSQL_ROOT_PASSWORD=pw1234 -e MY_VARS=1233456 -d mysql
+
+# Persistant data
+- docker run --name web01 -p 80:80 -d nginx
+- ip a
+- cd /opt/
+- mkdir nginx
+- cd nginx
+- mkdir data
+- docker run --name web02 -p 80:80 -v /opt/ngnix/data:/usr/share/nginx/html -d nginx # Host volume
+- docker run --name web02 -p 80:80 -v /usr/share/nginx/html -d nginx # Annonymus volume /var/lib/docker/volumes
+- docker run --name web02 -p 80:80 -v /my_volume:/usr/share/nginx/html -d nginx # Named volume /var/lib/docker/volumes
+- 
+
+
+

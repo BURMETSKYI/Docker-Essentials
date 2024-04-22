@@ -40,7 +40,7 @@
 
 - docker run --name DB-mysql2 -e MYSQL_ROOT_PASSWORD=pw1234 -e MY_VARS=1233456 -d mysql
 
-# Persistant data
+# Persistant data | Volumes
 - docker run --name web01 -p 80:80 -d nginx
 - ip a
 - cd /opt/
@@ -50,7 +50,28 @@
 - docker run --name web02 -p 80:80 -v /opt/ngnix/data:/usr/share/nginx/html -d nginx # Host volume
 - docker run --name web02 -p 80:80 -v /usr/share/nginx/html -d nginx # Annonymus volume /var/lib/docker/volumes
 - docker run --name web02 -p 80:80 -v /my_volume:/usr/share/nginx/html -d nginx # Named volume /var/lib/docker/volumes
-- 
+- docker volume ls
+- docker volume create infos
+- docker volume rm infos
 
+# Docker Network
+- docker network ls
+- docker network create myNet01
+- docker run --rm -it --name container1 nicolaka/netshoot /bin/bash
+- docker run --rm -it --name container2 nicolaka/netshoot /bin/bash
+- docker inspect container1
+- docker run --rm -it --name container1 --net myNet01 nicolaka/netshoot /bin/bash
+- docker run --rm -it --name container2 --net myNet01 nicolaka/netshoot /bin/bash
+- docker network connect myNet01 container2
+- docker network disconnect <NetworkID> container2
+- docker network create myNet02
+- docker run --rm -it --name container1 --net myNet02 nicolaka/netshoot /bin/bash # Named Networks
+- docker run --rm -it --name container1 --net host nicolaka/netshoot /bin/bash
+- docker run --rm -it --name container2 --net host nicolaka/netshoot /bin/bash # Host IP
+- docker run --rm -it --name container1 --net none nicolaka/netshoot /bin/bash # No IP
+- docker network create -d macvlan --subnet 192.168.100.0/24 --gateway 192.168.100.1 --ip-range 192.168.100.99/32 -o parent=eth0 myMACvlan32 # creating macvlan
+- docker run --rm -it --name container1 --net myMACvlan32 nicolaka/netshoot /bin/bash # macvlan
+- docker network create -d macvlan --subnet 172.31.24.0/24 --gateway 172.31.24.1 --ip-range 172.31.24.207/32 -o parent=eth0 MyHomeLan
+- 
 
 

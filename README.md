@@ -185,4 +185,7 @@ FROM ubuntu:22.04
 
 <img width="857" alt="Screenshot 2024-04-23 at 15 33 44" src="https://github.com/BURMETSKYI/Docker-Essentials/assets/131384006/063e5ec7-7654-4831-a3a1-0b0049b68a56">
 
+<img width="834" alt="Screenshot 2024-04-23 at 16 51 53" src="https://github.com/BURMETSKYI/Docker-Essentials/assets/131384006/1a6557a6-80c2-4860-94a0-9adad0f7b29b">
+
+<img width="1253" alt="Screenshot 2024-04-23 at 17 19 48" src="https://github.com/BURMETSKYI/Docker-Essentials/assets/131384006/08edbb63-68b7-4522-8bb8-a7bf9e5a09c0">
 

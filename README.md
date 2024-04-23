@@ -72,6 +72,9 @@
 - docker network create -d macvlan --subnet 192.168.100.0/24 --gateway 192.168.100.1 --ip-range 192.168.100.99/32 -o parent=eth0 myMACvlan32 # creating macvlan
 - docker run --rm -it --name container1 --net myMACvlan32 nicolaka/netshoot /bin/bash # macvlan
 - docker network create -d macvlan --subnet 172.31.24.0/24 --gateway 172.31.24.1 --ip-range 172.31.24.207/32 -o parent=eth0 MyHomeLan
-- 
+
+# Docker-compose
+
+<img width="857" alt="Screenshot 2024-04-23 at 15 33 44" src="https://github.com/BURMETSKYI/Docker-Essentials/assets/131384006/063e5ec7-7654-4831-a3a1-0b0049b68a56">
 
 

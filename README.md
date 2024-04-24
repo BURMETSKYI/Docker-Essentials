@@ -189,3 +189,8 @@ FROM ubuntu:22.04
 
 <img width="1253" alt="Screenshot 2024-04-23 at 17 19 48" src="https://github.com/BURMETSKYI/Docker-Essentials/assets/131384006/08edbb63-68b7-4522-8bb8-a7bf9e5a09c0">
 
+- docker compose up
+- docker compose logs -f
+- docker compose stop
+- docker compose down
+- 

@@ -144,7 +144,7 @@ FROM ubuntu:22.04
 
 # dokerfile
 - FROM ubuntu:22.04
-- LABEL autor=Burmetskyi
+- LABEL author=Burmetskyi
 - RUN apt-get update
 - RUN apt-get install nginx -y
 - RUN apt-get clean && rm -rf /var/lib/apt/lists/*

@@ -195,4 +195,6 @@ FROM ubuntu:22.04
 - docker compose logs -f
 - docker compose stop
 - docker compose down
-- 
+
+# Docker Portainer
+- how to install Portainer: https://docs.portainer.io/start/install-ce/server/docker/linux

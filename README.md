@@ -183,6 +183,8 @@ FROM ubuntu:22.04
 
 # Docker-compose
 
+- Install Docker Compose: https://docs.docker.com/compose/install/linux/
+
 <img width="857" alt="Screenshot 2024-04-23 at 15 33 44" src="https://github.com/BURMETSKYI/Docker-Essentials/assets/131384006/063e5ec7-7654-4831-a3a1-0b0049b68a56">
 
 <img width="834" alt="Screenshot 2024-04-23 at 16 51 53" src="https://github.com/BURMETSKYI/Docker-Essentials/assets/131384006/1a6557a6-80c2-4860-94a0-9adad0f7b29b">

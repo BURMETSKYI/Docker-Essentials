@@ -24,8 +24,6 @@ networks:
     name: webnet
 
 
-/----------/
-
 # docker run --name app -p 80:80 --net appnet PHP:apache
 # docker run --name app-postgres -e 'POSTGRES_PASSWORD=mypass --net appnet postgres
 # docker run --name app-redis --net appnet redis
@@ -38,7 +36,7 @@ services:
     ports:
       - '80:80'
     restart: unless-stopped
-    depends-on:
+    depends_on:
       - app-db
       - app-redis
     networks:
@@ -68,10 +66,121 @@ networks:
   localnet:
     name: localnet
     driver: bridge
-    
-      
-    
-    
 
+# docker run -p 5005:5005 -v /path/to/data:/app/data -e PASSWORD=flame_password flame
+
+version: '3.5'
+services:
+  flame:
+    image: pawelmalak/flame
+    container_name: flame
+    ports:
+      - '5005:5005'
+    volumes:
+      - '/opt/flame/data:/app/data'
+    environment:
+      - 'PASSWORD=password123'
+    restart: unless-stopped
+    
+  heimdall:
+    image: lscr.io/linuxserver/heimdall:latest
+    container_name: heimdall
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /path/to/heimdall/config:/config
+    ports:
+      - 80:80
+      - 443:443
+    restart: unless-stopped
+
+# nextcloud - base version - apache
+
+version: '3.5'
+
+volumes:
+  nextcloud:
+  db:
+
+services:
+  db:
+    image: mariadb:10.6
+    restart: always
+    command: --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW
+    volumes:
+      - db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=pass123
+      - MYSQL_PASSWORD=pass123
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+
+  app:
+    image: nextcloud
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - nextcloud:/var/www/html
+    environment:
+      - MYSQL_PASSWORD=pass123
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_HOST=db
+
+
+# wordpress 
+
+version: '3.5'
+
+services:
+
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: exampledb
+    volumes:
+      - wordpress:/var/www/html
+
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+      MYSQL_ROOT_PASSWORD: rootdbpass
+    volumes:
+      - db:/var/lib/mysql
+
+volumes:
+  wordpress:
+  db:
+
+# Docker Portainer
+# docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+
+version: "3.3"
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    environment:
+      - TZ=Europe/London
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /opt/portainer/portainer_data:/data
+    ports:
+      - "8000:8000"
+      - "9443:9443"
+    restart: always
 
     

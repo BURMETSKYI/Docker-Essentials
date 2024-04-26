@@ -47,7 +47,7 @@
 - mkdir nginx
 - cd nginx
 - mkdir data
-- docker run --name web02 -p 80:80 -v /opt/ngnix/data:/usr/share/nginx/html -d nginx # Host volume
+- docker run --name web02 -p 80:80 -v /opt/nginx/data:/usr/share/nginx/html -d nginx # Host volume
 - docker run --name web02 -p 80:80 -v /usr/share/nginx/html -d nginx # Annonymus volume /var/lib/docker/volumes
 - docker run --name web02 -p 80:80 -v /my_volume:/usr/share/nginx/html -d nginx # Named volume /var/lib/docker/volumes
 - docker volume ls

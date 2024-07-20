@@ -198,3 +198,6 @@ FROM ubuntu:22.04
 
 # Docker Portainer
 - how to install Portainer: https://docs.portainer.io/start/install-ce/server/docker/linux
+
+# Docker, Dockerfile, and Docker-Compose | O'REILLY
+- docker run --rm -v ${PWD}:/myvol ubuntu /bin/bash -c "ls -lha > /myvol/myfile.txt"

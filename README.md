@@ -4,6 +4,7 @@
 -  useradd -m -s /bin/bash username
 -  usermod -aG docker username
 -  passwd username
+-  sudo usermod -aG sudo username
 -  id username
 -  su - username
 -  docker --version

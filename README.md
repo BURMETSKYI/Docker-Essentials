@@ -3,6 +3,7 @@
 -  !# Create and add admin docker user to docker group, add permissions
 -  useradd -m -s /bin/bash username
 -  usermod -aG docker username
+-  passwd username
 -  id username
 -  su - username
 -  docker --version
